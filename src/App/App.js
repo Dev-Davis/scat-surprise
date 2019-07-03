@@ -11,6 +11,9 @@ import 'firebase/auth';
 import Home from '../Components/Home/Home';
 import Auth from '../Components/Auth/Auth';
 import MyNavbar from '../Components/MyNavbar/MyNavbar';
+import NewScat from '../Components/NewScat/NewScat';
+import EditScat from '../Components/EditScat/EditScat';
+import SingleScat from '../Components/SingleScat/SingleScat';
 
 import './App.scss';
 
@@ -66,6 +69,9 @@ class App extends React.Component {
                 <Switch>
                   <PublicRoute path='/auth' component={Auth} authed={authed} />
                   <PrivateRoute path='/home' component={Home} authed={authed} />
+                  <PrivateRoute path='/new' component={NewScat} authed={authed} />
+                  <PrivateRoute path='/edit/:id' component={EditScat} authed={authed} />
+                  <PrivateRoute path='/scat/:id' component={SingleScat} authed={authed} />
                   <Redirect from="*" to="/auth" />
                 </Switch>
               </div>
