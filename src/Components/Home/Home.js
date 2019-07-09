@@ -1,7 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import firebase from 'firebase/app';
+
+import ScatCard from '../ScatCard/ScatCard';
+
+import scatsData from '../../helpers/data/scatsData';
 
 class Home extends React.Component {
+  state = {
+    scats: [],
+  }
+
+  componentDidMount = () => {
+    const { uid } = firebase.auth().currentUser;
+    scatsData.getScats(uid)
+      .then(scats => this.setState({scats}))
+      .catch(err => console.error('could not get scats', err));
+  }
 
   editEvent = (e) => {
     e.preventDefault();
@@ -9,12 +23,19 @@ class Home extends React.Component {
     this.props.history.push(`/edit/${orderId}`);
   };
   render() {
-    const singleLink = '/scat/123456';
+    const makeCards = this.state.scats.map(scat => (
+      <ScatCard
+        key={scat.id}
+        scat={scat}
+      />
+    ));
+
     return (
-      <div className="Home">
-        <h1>Home</h1>
-        <button className="btn btn-success"onClick={this.editEvent}>Editing S**t</button>
-        <Link to={singleLink}>View Single</Link>
+      <div className="Home col">
+          <h1>Home</h1>
+          <div className="d-flex">
+          {makeCards}
+        </div>
       </div>
     );
   }

@@ -1,0 +1,44 @@
+{
+  "scats": {
+    "scat1": {
+      "location": "NSS",
+      "weight": "7lbs",
+      "color": "brown",
+      "sampleNum": "Sample #1",
+      "animal": "Raccoon",
+      "uid": "7KgPHaA1xyRS6L4HGImbBQWRXID3"
+    },
+    "scat2": {
+      "location": "The Woods",
+      "weight": "7lbs",
+      "color": "green",
+      "sampleNum": "Sample #2",
+      "animal": "Dog",
+      "uid": "12345"
+    },
+    "scat3": {
+      "location": "Neighbor's Yard",
+      "weight": "7lbs",
+      "color": "redish",
+      "sampleNum": "Sample #3",
+      "animal": "Cat",
+      "uid": "7KgPHaA1xyRS6L4HGImbBQWRXID3"
+    },
+    "scat4": {
+      "location": "Back Yard",
+      "weight": "7lbs",
+      "color": "mustard",
+      "sampleNum": "Sample #4",
+      "animal": "Wolf",
+      "uid": "67890"
+    },
+    "scat5": {
+      "location": "Hardee's Parking Lot",
+      "weight": "7lbs",
+      "color": "dark brown",
+      "sampleNum": "Sample #5",
+      "animal": "Dragon",
+      "uid": "7KgPHaA1xyRS6L4HGImbBQWRXID3"
+    }
+  }
+}
