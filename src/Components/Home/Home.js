@@ -9,12 +9,15 @@ class Home extends React.Component {
   state = {
     scats: [],
   }
-
-  componentDidMount = () => {
+  getScats = () => {
     const { uid } = firebase.auth().currentUser;
     scatsData.getScats(uid)
       .then(scats => this.setState({scats}))
       .catch(err => console.error('could not get scats', err));
+  }
+
+  componentDidMount = () => {
+    this.getScats();
   }
 
   editEvent = (e) => {
@@ -22,11 +25,20 @@ class Home extends React.Component {
     const orderId = '123456';
     this.props.history.push(`/edit/${orderId}`);
   };
+
+
+  deleteScat = (scatId) => {
+    scatsData.deleteScat(scatId)
+      .then(() => this.getScats())
+      .catch(err => console.error('unable to delete', err));
+  }
+
   render() {
     const makeCards = this.state.scats.map(scat => (
       <ScatCard
         key={scat.id}
         scat={scat}
+        deleteScat={this.deleteScat}
       />
     ));
 
