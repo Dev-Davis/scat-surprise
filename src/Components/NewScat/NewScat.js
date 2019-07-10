@@ -34,7 +34,6 @@ class NewScat extends React.Component {
     e.preventDefault();
     const saveMe = { ...this.state.newScat };
     saveMe.uid = firebase.auth().currentUser.uid;
-    console.error('thing to save', saveMe);
     scatsData.postScat(saveMe)
       .then(() => this.props.history.push('/home'))
       .catch(err => console.error('unable to save', err));

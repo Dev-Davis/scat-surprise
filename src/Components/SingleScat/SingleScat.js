@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import scatsData from '../../helpers/data/scatsData';
 
@@ -23,10 +24,13 @@ class Single extends React.Component {
 
   render() {
     const { scat } = this.state;
+    // the id is not inside scat for single. It's in the params which has to be defined
+    const editLink = `/edit/${this.props.match.params.id}`;
     return (
       <div className="Single">
         <h1>{scat.sampleNum}</h1>
         <h2>{scat.location}</h2>
+        <Link className="btn btn-primary" to={editLink}>Edit</Link>
         <button className="btn btn-danger" onClick={this.deleteScat}>Delete</button>
       </div>
     );
