@@ -1,4 +1,6 @@
 import React from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 const defaultScat = {
   "location": '',
@@ -26,25 +28,18 @@ class NewScat extends React.Component {
   locationChange = e => this.formFieldStringState('location', e);
   animalChange = e => this.formFieldStringState('animal', e);
 
-  // sampleNumChange = (e) => {
-  //   e.preventDefault();
-  //   const tempScat = { ...this.state.newScat };
-  //   tempScat['sampleName'] = e.target.value;
-  //   this.setState({ newScat: tempScat });
-  // };
-
-  // colorChange = (e) => {
-  //   e.preventDefault();
-  //   const tempScat = { ...this.state.newScat };
-  //   tempScat['sampleName'] = e.target.value;
-  //   this.setState({ newScat: tempScat });
-  // };
+  formSubmit = (e) => {
+    e.preventDefault();
+    const saveMe = { ...this.state.newScat };
+    saveMe.uid = firebase.auth().currentUser.uid;
+    console.error('thing to save', saveMe);
+  }
   
   render() {
     const { newScat } = this.state;
     return (
       <div className="New">
-        <form>
+        <form onSubmit={this.formSubmit}>
           <div className="form-group">
             <label htmlFor="sampleNum">Sample Name</label>
             <input 
