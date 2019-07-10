@@ -2,6 +2,8 @@ import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
+import scatsData from '../../helpers/data/scatsData';
+
 const defaultScat = {
   "location": '',
   "weight": '',
@@ -33,7 +35,11 @@ class NewScat extends React.Component {
     const saveMe = { ...this.state.newScat };
     saveMe.uid = firebase.auth().currentUser.uid;
     console.error('thing to save', saveMe);
+    scatsData.postScat(saveMe)
+      .then(() => this.props.history.push('/home'))
+      .catch(err => console.error('unable to save', err));
   }
+
   
   render() {
     const { newScat } = this.state;
